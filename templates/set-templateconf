@@ -1,0 +1,14 @@
+USAGE="Usage: 'source set-templateconf ./000-hello-poky/'"
+
+set_templateconf() {
+  local templateconf="${1?${USAGE}}"
+
+  if [ -d "${templateconf}" ]; then
+    export TEMPLATECONF="${1?${USAGE}}"
+  else
+    echo "${USAGE}"
+  fi
+}
+
+set_templateconf $@
+
