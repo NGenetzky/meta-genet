@@ -1,0 +1,12 @@
+### Shell environment set up for builds. ###
+
+This environment can be summarized as:
+1. Some magical env variables, such as:
+    - BBPATH
+    - BUILDDIR
+    - BB_ENV_EXTRAWHITE
+2. Some standard env variables, such as: 
+    - PATH
+3. Some local configuration, such as:
+    - ${BUILDDIR}/conf/local.conf
+    - ${BUILDDIR}/conf/bblayers.conf
