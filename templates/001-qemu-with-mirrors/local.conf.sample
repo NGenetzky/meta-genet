@@ -23,7 +23,7 @@
 #MACHINE ?= "qemumips64"
 #MACHINE ?= "qemuppc"
 #MACHINE ?= "qemux86"
-#MACHINE ?= "qemux86-64"
+MACHINE ?= "qemux86-64"
 #
 # There are also the following hardware board target machines included for 
 # demonstration purposes:
@@ -214,9 +214,9 @@ BB_DISKMON_DIRS ??= "\
 # NOTE: if the mirror uses the same structure as SSTATE_DIR, you need to add PATH
 # at the end as shown in the examples below. This will be substituted with the
 # correct path within the directory structure.
-#SSTATE_MIRRORS ?= "\
-#file://.* http://someserver.tld/share/sstate/PATH;downloadfilename=PATH \n \
-#file://.* file:///some/local/dir/sstate/PATH"
+SSTATE_MIRRORS ?= "\
+file://.* file:///mnt/sstate-cache/PATH \
+"
 
 
 #
@@ -234,3 +234,15 @@ PACKAGECONFIG_append_pn-nativesdk-qemu = " sdl"
 # track the version of this file when it was generated. This can safely be ignored if
 # this doesn't mean anything to you.
 CONF_VERSION = "1"
+
+#
+# Efficiently Fetching Source Files During a Build
+#
+SOURCE_MIRROR_URL ?= "file:///mnt/downloads/"
+INHERIT += "own-mirrors" 
+# To generate the source mirror enable BB_GENERATE_MIRROR_TARBALLS,
+# and then run: bitbake -c fetchall target 
+#BB_GENERATE_MIRROR_TARBALLS = "1" 
+# To verify success try disabling network access.
+#BB_NO_NETWORK = "1"
+
