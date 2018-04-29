@@ -3,7 +3,9 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
 PV = "1.0.0"
-PR = "r0"
+PR = "r1"
+
+BBCLASSEXTEND = "native nativesdk"
 
 SRCREV = "50fbf9d64d68b9d0a5f9b77df39c18e2569a24ea"
 SRC_URI = "\
@@ -18,3 +20,7 @@ do_install() {
         "${WORKDIR}/env_to_tinydb.py"
 }
 
+# We will assume python2 for now.
+RDEPENDS_${PN} = "\
+    python-tinydb \
+"
