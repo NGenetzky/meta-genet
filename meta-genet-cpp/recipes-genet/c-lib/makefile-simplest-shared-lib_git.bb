@@ -3,7 +3,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=70747ebb4dacfde55176608d54b6c353"
 
 PV = "0.1"
-PR = "r0"
+PR = "r1"
 
 BBCLASSEXTEND = "native nativesdk"
 
@@ -18,12 +18,17 @@ SRC_URI[sha256sum] = "619b73c782b8d423a938b84df572ac5c1c37d20175dd3041464c4ee08b
 
 do_configure_prepend() {
 	# Specify which Makefile to use.
-	ln -sT 'complete.mk' 'Makefile'
+	ln -sTf 'complete.mk' 'Makefile'
 }
 
 do_install() {
 	install -d \
+		"${D}${includedir}" \
 		"${D}${libdir}"
+
+	install --target-directory "${D}${includedir}" \
+		"${B}/foo.h"
+
 	install --target-directory "${D}${libdir}" \
 		"${B}/libfoo.so.${PV}"
 }
