@@ -8,4 +8,7 @@ HOMEPAGE = "https://github.com/msiemens/tinydb"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://PKG-INFO;md5=49903ea9c586b357ceb682e761818804"
 
+INC_PR = "r1"
+
 inherit pypi
+BBCLASSEXTEND = "native nativesdk"
