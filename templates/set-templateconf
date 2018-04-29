@@ -4,7 +4,8 @@ set_templateconf() {
   local templateconf="${1?${USAGE}}"
 
   if [ -d "${templateconf}" ]; then
-    export TEMPLATECONF="${1?${USAGE}}"
+    export TEMPLATECONF="$(readlink -f ${templateconf})"
+    echo "TEMPLATECONF=${TEMPLATECONF}"
   else
     echo "${USAGE}"
   fi
