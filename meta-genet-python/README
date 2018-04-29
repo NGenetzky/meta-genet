@@ -1,0 +1,10 @@
+This README file contains information on the contents of the meta-genet-python layer.
+
+Please see the corresponding sections below for details.
+
+Dependencies
+============
+
+  URI: http://cgit.openembedded.org/meta-openembedded/tree/meta-python
+  branch: rocko
+
