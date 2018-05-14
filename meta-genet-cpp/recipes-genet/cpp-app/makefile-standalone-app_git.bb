@@ -2,12 +2,12 @@ SUMMARY = "Standalone Cpp Application created with Makefile"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=70747ebb4dacfde55176608d54b6c353"
 
-PV = "1.0.0"
+PV = "1.0.1"
 PR = "r0"
 
 BBCLASSEXTEND = "native nativesdk"
 
-SRCREV = "9ef011f1f2656241c75444fe600b33c804d6740f"
+SRCREV = "00bae33f0452cc4f74f502b36029e89083c88ae1"
 S = "${WORKDIR}/${PN}"
 SRC_URI = "\
 	git://github.com/NGenetzky/genet-app.git;subpath=cpp/makefile-standalone-app;destsuffix=${PN} \
