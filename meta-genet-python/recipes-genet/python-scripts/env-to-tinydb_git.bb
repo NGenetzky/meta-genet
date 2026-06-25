@@ -20,7 +20,5 @@ BBCLASSEXTEND = "native nativesdk"
 
 do_install() {
     install -d "${D}${bindir}"
-    install --target-directory "${D}${bindir}" \
-        "${WORKDIR}/env_to_tinydb-${PV}.py"
-    mv "${D}${bindir}/env_to_tinydb-${PV}.py" "${D}${bindir}/env_to_tinydb.py"
+    install -m 0755 "${WORKDIR}/env_to_tinydb-${PV}.py" "${D}${bindir}/env_to_tinydb.py"
 }
