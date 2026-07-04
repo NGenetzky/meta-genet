@@ -21,34 +21,15 @@ jobs:
         with:
           submodules: true
 
-      - name: Update submodules to target release
-        run: |
-          cd layers/poky
-          git fetch origin ${{ inputs.yocto_release }}
-          git checkout origin/${{ inputs.yocto_release }}
-          cd ../meta-openembedded
-          git fetch origin ${{ inputs.yocto_release }}
-          git checkout origin/${{ inputs.yocto_release }}
+      - name: Update
+        run: script/update-yocto "${{ inputs.yocto_release }}"
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
 
-      - name: Install bitbake dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y diffstat gawk chrpath
+      - name: Bootstrap
+        run: script/bootstrap-bitbake
 
-      - name: Parse recipes
-        run: |
-          source layers/poky/oe-init-build-env build
-
-          cat >> conf/bblayers.conf << 'EOF'
-          BBLAYERS += " \
-            ${TOPDIR}/../meta-genet-python \
-            ${TOPDIR}/../layers/meta-openembedded/meta-oe \
-            ${TOPDIR}/../layers/meta-openembedded/meta-python \
-          "
-          EOF
-
-          bitbake -p
+      - name: CI Build
+        run: script/cibuild-bitbake
