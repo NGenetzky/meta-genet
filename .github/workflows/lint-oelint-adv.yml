@@ -17,6 +17,9 @@ on:
       - "script/test-oe.sh"
       - ".github/workflows/lint-oelint-adv.yml"
 
+permissions:
+  contents: read
+
 jobs:
   oelint:
     runs-on: ubuntu-latest

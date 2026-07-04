@@ -9,9 +9,7 @@ set -e
 
 cd "$(dirname "$0")/.."
 
-if [ "$#" -gt 0 ]; then
-    set -- "$@"
-else
+if [ "$#" -eq 0 ]; then
     set -- $(find . -name '.git' -prune -o \( -name '*.bb' -o -name '*.inc' \) -print)
 fi
 
