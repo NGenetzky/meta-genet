@@ -1,0 +1,36 @@
+name: Lint (oelint-adv)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**/*.bb"
+      - "**/*.inc"
+      - "script/bootstrap-oe.sh"
+      - "script/test-oe.sh"
+      - ".github/workflows/lint-oelint-adv.yml"
+  pull_request:
+    paths:
+      - "**/*.bb"
+      - "**/*.inc"
+      - "script/bootstrap-oe.sh"
+      - "script/test-oe.sh"
+      - ".github/workflows/lint-oelint-adv.yml"
+
+jobs:
+  oelint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Bootstrap
+        run: script/bootstrap-oe.sh
+
+      - name: Test
+        run: script/test-oe.sh

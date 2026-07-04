@@ -22,14 +22,14 @@ jobs:
           submodules: true
 
       - name: Update
-        run: script/update-yocto "${{ inputs.yocto_release }}"
+        run: script/update-yocto.sh "${{ inputs.yocto_release }}"
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
 
       - name: Bootstrap
-        run: script/bootstrap-bitbake
+        run: script/bootstrap-bitbake.sh
 
       - name: CI Build
-        run: script/cibuild-bitbake
+        run: script/cibuild-bitbake.sh
