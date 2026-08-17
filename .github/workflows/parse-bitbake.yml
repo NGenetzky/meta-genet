@@ -1,0 +1,38 @@
+name: Parse (bitbake)
+
+on:
+  workflow_dispatch:
+    inputs:
+      yocto_release:
+        description: "Yocto release branch to test against"
+        required: true
+        type: choice
+        options:
+          - scarthgap
+          - kirkstone
+          - wrynose
+        default: scarthgap
+
+permissions:
+  contents: read
+
+jobs:
+  parse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Update
+        run: script/update-yocto.sh "${{ inputs.yocto_release }}"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Bootstrap
+        run: script/bootstrap-bitbake.sh
+
+      - name: CI Build
+        run: script/cibuild-bitbake.sh
