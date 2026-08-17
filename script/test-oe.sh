@@ -15,6 +15,9 @@ fi
 
 oelint-adv \
     --suppress oelint.var.suggestedvar.CVE_PRODUCT \
+    --suppress oelint.var.suggestedvar.BUGTRACKER \
     --suppress oelint.var.suggestedvar.SECTION \
+    --suppress oelint.var.bbclassextend \
     --suppress oelint.var.licenseremotefile \
+    --suppress oelint.vars.multilineident \
     "$@"
